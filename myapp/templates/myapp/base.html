@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Document</title>
+        <link rel="stylesheet" href="{% static 'myapp/style.css' %}">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <nav class="navbar navbar-dark bg-dark">
+            <div>
+                <img src="https://scontent.fblr4-2.fna.fbcdn.net/v/t1.0-1/46341039_2346145605618284_7223169508993662976_n.jpg?_nc_cat=100&_nc_sid=dbb9e7&_nc_ohc=K_HDHuN_qswAX822aJj&_nc_ht=scontent.fblr4-2.fna&oh=59cb6fafcf5580b1c007b71086acde58&oe=5F67B102" height="50px" width="50px" alt="Logo">
+                <a href="#" class="navbar-brand"><b>yotaBooks</b></a>
+            </div>
+            
+
+            <div class="navbar">
+                <a class="nav-item nav-link" href="{% url 'myapp:create_item' %}">Add User</a>
+                {% if user.is_authenticated %}
+                    <div>
+                        <a href="{% url 'logout' %}">Logout</a>
+                        
+                        <a href="{% url 'profile' %}">Profile</a>
+                    </div>
+                    
+                {% else %}
+                    <a href="{% url 'login' %}">Login</a>
+                {% endif %}
+
+            </div>
+
+        </nav>
+
+        {% if messages %}
+            {% for message in messages %}
+                <div class='alert alert-{{ message.tags }}'>
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+
+
+        {% block body %}
+        {% endblock %}
+    </body>
+</html>

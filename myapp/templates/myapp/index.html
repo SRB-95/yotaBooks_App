@@ -1,0 +1,38 @@
+{% extends 'myapp/base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        
+
+    </head>
+    <body>
+        {% block body %}
+            {% for person in person_list %}
+            <div class="row">
+                <div class="col-md-3 offset-md-2">
+                    <img class="card" height="200px" width="200px" src="{{ person.image }}"/>
+                </div>
+                <div class="col-md-4">
+                    <h1>{{ person.first_name }}</h1>
+                </div>
+                <div class="col-md-2 mt-2">
+			        <a href="{% url 'myapp:detail' person.id %}" class ="btn btn-primary">Detail</a>
+                </div> 
+            </div>
+
+            {% endfor %}   
+        {% endblock %}
+
+        {% for person in person_list %}
+                <ul>
+                    <li>
+                        <a href="{% url 'myapp:detail' person.id %}">{{person_id}} - {{ person.first_name }}</a>
+                        
+                    </li>
+                </ul>
+        {% endfor %}
+    </body>
+</html>
